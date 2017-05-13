@@ -1,0 +1,43 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+<LinearLayout
+
+    android:id="@+id/activity_mesajlasma_sag_mesaj_linear_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+android:layout_marginLeft="100dp"
+    android:layout_marginBottom="5dp"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/border_mesaj_kendi_mesajim"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="5dp"
+
+
+    android:paddingTop="5dp">
+
+    <TextView
+        android:id="@+id/activity_mesajlasma_sag_mesaj_metin_icerik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text=""
+        android:textColor="@android:color/black"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/activity_mesajlasma_sag_mesaj_mesaj_tarih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="4dp"
+        android:textSize="10sp"/>
+
+</LinearLayout>
+</RelativeLayout>

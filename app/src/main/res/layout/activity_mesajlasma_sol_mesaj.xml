@@ -1,0 +1,34 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/activity_mesajlasma_sol_mesaj_linear_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="3dp"
+    android:layout_marginRight="100dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/border_mesaj"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp">
+
+    <TextView
+        android:id="@+id/activity_mesajlasma_sol_mesaj_mesaj_icerik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="deneme mesaj"
+
+        android:textColor="@android:color/black"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/activity_mesajlasma_sol_mesaj_mesaj_tarih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="15:20"
+        android:textSize="10sp"/>
+
+</LinearLayout>

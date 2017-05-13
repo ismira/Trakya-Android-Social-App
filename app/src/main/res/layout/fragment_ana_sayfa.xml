@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+    >
+    <Button
+        android:id="@+id/fragment_ana_sayfa_login_button"
+        android:text="ÖĞRENCİ GİRİŞ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/fragment_ana_sayfa_ogrenci_kayit_button"
+        android:text="ÖĞRENCİ KAYIT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/fragment_ana_hoca_kayit_button"
+        android:text="Hoca Kayıt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/fragment_ana_sayfa_gruplar_fragment_button"
+        android:text="Gruplar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/fragment_ana_sayfa_Mesajlar_button"
+        android:text="Mesajlar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/fragment_ana_sayfa_nogrencin_hocalari_button"
+        android:text="ÖĞRENİN HOCALARI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/fragment_ana_sayfa_notlar_button"
+        android:text="Notlar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/fragment_ana_sayfa_not_ekle_button"
+        android:text="Not Ekle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>

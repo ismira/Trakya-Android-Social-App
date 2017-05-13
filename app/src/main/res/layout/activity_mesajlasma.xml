@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/activity_mesajlasma"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#e6e6e6"
+              android:orientation="vertical"
+    >
+
+ <android.support.v7.widget.RecyclerView
+     android:id="@+id/activity_mesajlasma_recycler_view"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:layout_weight="1">
+
+ </android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/activity_mesajlasma_mesaj_icerik_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/activity_mesajlasma_mesaj_gonder_button"/>
+
+        <Button
+            android:id="@+id/activity_mesajlasma_mesaj_gonder_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="GÖNDER"/>
+    </RelativeLayout>
+</LinearLayout>
+
+
+
