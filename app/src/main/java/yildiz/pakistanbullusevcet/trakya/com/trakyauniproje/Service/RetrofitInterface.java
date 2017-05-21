@@ -8,6 +8,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.ArananKisi;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.Gruplar;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.Mesaj;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.OgrenciHocalari;
@@ -85,5 +86,8 @@ public interface RetrofitInterface {
     Call<List<SonKonusmaMesaji>> getMesajlarListesi(@Field("id") Long id,
                                                     @Field("hoca_mi") boolean hoca_mi);
 
+
+    @GET("arama.php")
+    Call<List<ArananKisi>> getArananKisiler(@Query("aranacak_kisi") String aranacak_kelime);
 
 }

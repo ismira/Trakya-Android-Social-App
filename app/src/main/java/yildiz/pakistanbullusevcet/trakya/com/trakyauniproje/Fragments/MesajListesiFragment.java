@@ -4,11 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +23,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.AramaActivity;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.MesajlarActivity;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.SonKonusmaMesaji;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.R;
@@ -35,6 +42,7 @@ public class MesajListesiFragment extends Fragment {
     private final static String EXTRA_HOCA_MI = "extra_hoca_mi";
     private RetrofitInterface service = WS.getService();
 
+
     private Long mID;
     private boolean mHoca_mi;
 
@@ -42,17 +50,21 @@ public class MesajListesiFragment extends Fragment {
     private SonKonusmaMesajlariAdapter mAdapter;
 
 
+    private ProgressBar mProgressBar;
     private RecyclerView mMesajlarListesiRecyclerView;
 
 
-    //hesaba giriş yapan kişinin bilgileri
     public static MesajListesiFragment newInstance() {
-
         Bundle args = new Bundle();
-
         MesajListesiFragment fragment = new MesajListesiFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -71,6 +83,8 @@ public class MesajListesiFragment extends Fragment {
         konusmaListesi.enqueue(new Callback<List<SonKonusmaMesaji>>() {
             @Override
             public void onResponse(Call<List<SonKonusmaMesaji>> call, Response<List<SonKonusmaMesaji>> response) {
+                mProgressBar.setVisibility(View.GONE);
+
                 mSonKonusmaMesajlarListesi = response.body();
                 mAdapter = new SonKonusmaMesajlariAdapter(mSonKonusmaMesajlarListesi);
                 mMesajlarListesiRecyclerView.setAdapter(mAdapter);
@@ -78,7 +92,7 @@ public class MesajListesiFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<SonKonusmaMesaji>> call, Throwable t) {
-                Toast.makeText(getActivity(), "onFailure " + t.getMessage(), Toast.LENGTH_LONG).show();
+                mProgressBar.setVisibility(View.GONE);
             }
         });
     }
@@ -86,6 +100,8 @@ public class MesajListesiFragment extends Fragment {
     private void init(View view) {
         mMesajlarListesiRecyclerView = (RecyclerView) view.findViewById(R.id.activity_mesajlar_listesi_recycler_view);
         mMesajlarListesiRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mProgressBar = (ProgressBar) view.findViewById(R.id.activity_mesajlar_listesi_progress_bar);
+        mProgressBar.setEnabled(true);
     }
 
     private class SonKonusmaMesajlariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -151,4 +167,22 @@ public class MesajListesiFragment extends Fragment {
         }
     }
 
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.add_item_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_item_menu_add_item:
+                // TODO: 21.05.2017
+                Intent i = AramaActivity.newIntent(getActivity());
+                startActivity(i);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

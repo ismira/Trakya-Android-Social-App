@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/activity_mesajlasma_sag_mesaj_linear_layout"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="5dp"
+              android:layout_marginTop="5dp"
+              android:background="@drawable/border_mesaj"
+              android:orientation="vertical"
+              android:paddingBottom="5dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="5dp"
+              android:paddingTop="5dp">
+
+    <LinearLayout
+        android:id="@+id/solust"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/fragment_arama_item_kisi_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nflasdfasdfş"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/fragment_arama_item_message_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/message_icon"/>
+
+        <ImageButton
+            android:id="@+id/fragment_arama_item_profil_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profil_icon"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
