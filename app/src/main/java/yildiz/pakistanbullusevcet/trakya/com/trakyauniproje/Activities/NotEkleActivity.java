@@ -10,14 +10,14 @@ import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Fragments.NotEkleFra
  * Created by NFL on 12.05.2017.
  */
 
-public class NotEklleActivity extends SingleFragmentActivity {
+public class NotEkleActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {
         return NotEkleFragment.newInstance();
     }
 
     public static Intent newIntent(Context context) {
-        Intent i = new Intent(context, NotEklleActivity.class);
+        Intent i = new Intent(context, NotEkleActivity.class);
         return i;
     }
 

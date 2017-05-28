@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="yildiz.pakistanbullusevcet.trakya.com.trakyauniproje">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -12,49 +11,38 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".Activities.NotlarActivity">
-
-
         </activity>
         <activity android:name=".Activities.OgrencininHocalariActivity">
-
-
         </activity>
         <activity android:name=".Activities.HocaKayitActivity">
-
         </activity>
         <activity android:name=".Activities.OgrenciKayitActivty">
-
-
         </activity>
-
         <activity android:name=".Activities.OgrenciProfilActivity">
-
-
         </activity>
         <activity android:name=".Activities.MesajlarActivity">
-
-
         </activity>
         <activity android:name=".Activities.GruplarActivity">
-
-
         </activity>
         <activity android:name=".Activities.LoginActivity">
-
-        </activity>
-        <activity android:name=".Activities.AnaEkranActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MesajListesiActivity"></activity>
-        <activity android:name=".Activities.NotEklleActivity"></activity>
-        <activity android:name=".Activities.AramaActivity"></activity>
-    </application>
+        <activity android:name=".Activities.AnaEkranActivity">
 
+        </activity>
+        <activity android:name=".Activities.MesajListesiActivity"/>
+        <activity android:name=".Activities.NotEkleActivity"/>
+        <activity android:name=".Activities.AramaActivity"/>
+        <activity
+            android:name=".Activities.TabbedActivity"
+            android:label="@string/title_activity_tabbed"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+    </application>
 
 </manifest>

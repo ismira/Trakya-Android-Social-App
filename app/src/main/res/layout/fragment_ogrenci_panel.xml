@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#e6e6e6"
+              android:orientation="vertical">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not Paylaşımlarım"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#111b67"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/fragment_ogrenci_panel_not_paylarsimlarim_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A dersi, B dersi, C dersi.."
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/fragment_ogrenci_panel_not_paylas_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOT PAYLAŞMAK İSTİYORUM!"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hocalarım"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#111b67"
+            android:textStyle="bold"/>
+
+
+        <Button
+            android:id="@+id/fragment_ogrenci_panel_hocalarimi_goster_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hocalarımı Göster"/>
+    </LinearLayout>
+
+</LinearLayout>

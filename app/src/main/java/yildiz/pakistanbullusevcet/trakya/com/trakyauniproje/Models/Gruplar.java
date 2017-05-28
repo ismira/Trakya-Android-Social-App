@@ -18,7 +18,7 @@ public class Gruplar {
     private String grup_aciklama;
     private boolean grupta_mi;
 
-    public int getİd() {
+    public int getId() {
         return id;
     }
 

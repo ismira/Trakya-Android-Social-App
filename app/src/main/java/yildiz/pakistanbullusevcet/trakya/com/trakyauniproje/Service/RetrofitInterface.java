@@ -10,8 +10,10 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.ArananKisi;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.Gruplar;
+import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.Login;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.Mesaj;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.OgrenciHocalari;
+import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.OgrenciKayit;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.OgrenciNotlar;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.OgrenciProfil;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.SonKonusmaMesaji;
@@ -23,18 +25,17 @@ import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.SonKonusmaMes
 public interface RetrofitInterface {
 
     //Bunu(Call<Boolean>) boolean döndürmemeizin sebebi dönen değer sadece true ya da false geliyor olması
+    @FormUrlEncoded
     @POST("login.php")
-    Call<Boolean> isGiris(@Query("ogrenci_no") Long ogrenci_no,
-                          @Query("sifre") String sifre);
+    Call<Login> isGiris(@Field("ogrenci_no") Long ogrenci_no,
+                        @Field("sifre") String sifre);
 
 
 
-    @POST("ogrenciRegister.php")
-    Call<Boolean> postOgrenciKayit(@Query("ogrenci_no") String ogrenci_no,
-                          @Query("ogrenci_sifre") String sifre,
-                                   @Query("ogrenci_ad") String ogrenci_ad,
-                                   @Query("ogrenci_cinsiyet") boolean ogrenci_cinsiyet,
-                                   @Query("ogrenci_bolum ") String ogrenci_bolum);
+    @GET("ogrenciKayit.php")
+    Call<OgrenciKayit> getOgrenciKayit(@Query("ogrenci_no") String ogrenci_no,
+                                        @Query("ogrenci_sifre") String ogrenci_sifre,
+                                        @Query("ogrenci_cinsiyet") int ogrenci_cinsiyet);
 
 
 

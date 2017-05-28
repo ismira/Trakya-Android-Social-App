@@ -1,13 +1,11 @@
 package yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.BoolRes;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +15,11 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.OgrenciProfilActivity;
-import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.Gruplar;
+import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.LoginActivity;
+import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.OgrenciKayit;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.R;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Service.RetrofitInterface;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Service.WS;
@@ -44,19 +38,14 @@ public class OgrenciKayitFragment extends Fragment {
         return fragment;
     }
 
-    private RetrofitInterface mService = WS.getService();
+    private RetrofitInterface service = WS.getService();
 
 
     private Button mKayitOl;
     private EditText mOgrenciNo;
-    private EditText mOgrenciAd;
     private EditText mOgrenciSifre;
-    private CheckBox mOgrenciKız;
+    private CheckBox mOgrenciKiz;
     private CheckBox mOgrenciErkek;
-    private String textOgrenciAd;
-    private String textOgrenciNo;
-    private String textOgrenciSifre;
-    private Boolean mOgrenciCinsiyet = false;
 
 
     @Nullable
@@ -65,24 +54,27 @@ public class OgrenciKayitFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ogrenci_kayit, container, false);
 
         mKayitOl = (Button) view.findViewById(R.id.buttonKayitOlKayit);
-        mOgrenciAd = (EditText) view.findViewById(R.id.textOgrenciAdiKayit);
         mOgrenciNo = (EditText) view.findViewById(R.id.textOgrenciNumarasiKayit);
         mOgrenciSifre = (EditText) view.findViewById(R.id.textOgrenciSifresiKayit);
-        mOgrenciKız = (CheckBox) view.findViewById(R.id.checkKizKayit);
+        mOgrenciKiz = (CheckBox) view.findViewById(R.id.checkKizKayit);
         mOgrenciErkek = (CheckBox) view.findViewById(R.id.checkErkekKayit);
 
 
         mOgrenciErkek.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mOgrenciCinsiyet = true;
+                if (b) mOgrenciKiz.setChecked(false);
+                else mOgrenciKiz.setChecked(true);
+
+
             }
         });
 
-        mOgrenciKız.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mOgrenciKiz.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mOgrenciCinsiyet = false;
+                if (b) mOgrenciErkek.setChecked(false);
+                else mOgrenciErkek.setChecked(true);
             }
         });
 
@@ -90,28 +82,41 @@ public class OgrenciKayitFragment extends Fragment {
         mKayitOl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                textOgrenciNo = mOgrenciNo.getText().toString();
-                textOgrenciAd = mOgrenciAd.getText().toString();
-                textOgrenciSifre = mOgrenciSifre.getText().toString();
-                try {
-                    mService.postOgrenciKayit(textOgrenciNo, textOgrenciSifre, textOgrenciAd, mOgrenciCinsiyet, "Bilgisayar Mühendisligi").enqueue(new Callback<Boolean>() {
+                if (!mOgrenciErkek.isChecked() && !mOgrenciKiz.isChecked()) {
+                    Toast.makeText(getActivity(), "Cinsiyet Seçiniz", Toast.LENGTH_SHORT).show();
+                } else {
+                    boolean erkek_mi = mOgrenciErkek.isChecked();
+                    int cinsiyet_deger = (erkek_mi) ? 1 : 0;
+                    String ogr_no = mOgrenciNo.getText().toString();
+                    String ogr_sifre = mOgrenciSifre.getText().toString();
+                    service.getOgrenciKayit(ogr_no, ogr_sifre, cinsiyet_deger).enqueue(new Callback<OgrenciKayit>() {
                         @Override
-                        public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                         /*   if (response.body()) {
-                                Toast.makeText(getContext(), "Kayıt Başarılı", Toast.LENGTH_LONG).show();
-                            }*/
-                            Toast.makeText(getContext(), String.valueOf( response.body()), Toast.LENGTH_LONG).show();
+                        public void onResponse(Call<OgrenciKayit> call, Response<OgrenciKayit> response) {
+                            if (response.body().isSuccess()) {
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                                dialog.setTitle("Kayıt Başarılı");
+                                dialog.setMessage("Giriş Yapabilirsiniz.");
+                                dialog.setCancelable(false);
+                                dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent i = LoginActivity.newIntent(getActivity());
+                                        startActivity(i);
+                                    }
+                                });
+                                dialog.create();
+                            } else {
+                                Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
+                            }
                         }
 
                         @Override
-                        public void onFailure(Call<Boolean> call, Throwable t) {
-                            Toast.makeText(getContext(), "Kayıt Başarısız", Toast.LENGTH_LONG).show();
+                        public void onFailure(Call<OgrenciKayit> call, Throwable t) {
+                            Toast.makeText(getActivity(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
                         }
                     });
-                }
-                catch (Exception e){
-                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });

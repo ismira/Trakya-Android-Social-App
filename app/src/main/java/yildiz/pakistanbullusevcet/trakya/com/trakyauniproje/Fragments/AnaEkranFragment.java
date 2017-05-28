@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.GruplarAc
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.HocaKayitActivity;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.LoginActivity;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.MesajListesiActivity;
-import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.NotEklleActivity;
+import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.NotEkleActivity;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.NotlarActivity;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.OgrenciKayitActivty;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Activities.OgrencininHocalariActivity;
@@ -94,14 +93,14 @@ public class AnaEkranFragment extends Fragment {
         mOgrencininHocalari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = OgrencininHocalariActivity.newIntent(getActivity(), Tools.getID());
+                Intent i = OgrencininHocalariActivity.newIntent(getActivity());
                 startActivity(i);
             }
         });
         mNotEkleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = NotEklleActivity.newIntent(getActivity());
+                Intent i = NotEkleActivity.newIntent(getActivity());
                 startActivity(i);
             }
         });

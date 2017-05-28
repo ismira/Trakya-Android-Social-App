@@ -46,6 +46,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="GİRİŞ YAP"/>
+        <LinearLayout
+            android:paddingTop="20dp"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/fragment_giris_yap_ogrenci_kayit_ol_text_view"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimary"
+                android:text="Öğrenci Kayıt Ol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
     </LinearLayout>
+
+
 
 </LinearLayout>

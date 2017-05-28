@@ -24,6 +24,7 @@ import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.OgrenciProfil
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.R;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Service.RetrofitInterface;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Service.WS;
+import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Tools;
 
 
 /**
@@ -86,12 +87,8 @@ public class OgrenciProfilFragment extends Fragment implements View.OnClickListe
 
     private void OgrencininGruplarınıGetir() {
         try {
-            mOgrenciID = (Long) getArguments().getLong(ARG_OGRENCI_ID); // ogrenciId'si, ogrenciNo'su değil (farklışeyler)
-           // Toast.makeText(getContext(), mOgrenciID.toString(), Toast.LENGTH_LONG).show();
 
-            Long ogrId = 1l;
-
-         //   Toast.makeText(getContext(), ogrId.toString(), Toast.LENGTH_LONG).show();
+            Long ogrId = Tools.getID();
             service.getOgrenciGruplari(ogrId).enqueue(new Callback<Gruplar[]>() {
                 @Override
                 public void onResponse(Call<Gruplar[]> call, Response<Gruplar[]> response) {
@@ -119,11 +116,8 @@ public class OgrenciProfilFragment extends Fragment implements View.OnClickListe
 
     private void OgrenciBilgileriniGetir() {
         try {
-            mOgrenciID = (Long) getArguments().getLong(ARG_OGRENCI_ID); // ogrenciId'si, ogrenciNo'su değil (farklışeyler)
-          //  Toast.makeText(getContext(), mOgrenciID.toString(), Toast.LENGTH_LONG).show();
 
-            Long ogrId = 1l;
-          //  Toast.makeText(getContext(), ogrId.toString(), Toast.LENGTH_LONG).show();
+            Long ogrId = Tools.getID();
             serviceCall = service.getOgrenciProfil(ogrId);
 
             serviceCall.enqueue(new Callback<OgrenciProfil>() {
@@ -155,8 +149,7 @@ public class OgrenciProfilFragment extends Fragment implements View.OnClickListe
             Toast.makeText(getActivity(), "Merhaba Tombili", Toast.LENGTH_LONG).show();
         }
         if (view.getId() == R.id.BtnTumGruplariGor) {
-
-           Intent i = GruplarActivity.newIntent(getContext(),mOgrenciID);
+            Intent i = GruplarActivity.newIntent(getContext(), Tools.getID());
             startActivity(i);
 
         }

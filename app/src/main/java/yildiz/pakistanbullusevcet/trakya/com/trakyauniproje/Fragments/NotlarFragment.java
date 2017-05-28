@@ -54,9 +54,9 @@ public class NotlarFragment extends Fragment {
         mService.getOgrenciNotlar(Tools.getID()).enqueue(new Callback<List<OgrenciNotlar>>() {
             @Override
             public void onResponse(Call<List<OgrenciNotlar>> call, Response<List<OgrenciNotlar>> response) {
-                //OgrenciNotlarAdapter adapter = new OgrenciNotlarAdapter(response.body());
-                //mRecyclerView.setAdapter(adapter);
-                Toast.makeText(getActivity(), response.body().toString(), Toast.LENGTH_SHORT).show();
+                OgrenciNotlarAdapter adapter = new OgrenciNotlarAdapter(response.body());
+                mRecyclerView.setAdapter(adapter);
+
             }
 
             @Override

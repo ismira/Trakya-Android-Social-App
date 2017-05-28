@@ -12,15 +12,13 @@ import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Fragments.Ogrencinin
  */
 
 public class OgrencininHocalariActivity extends SingleFragmentActivity {
-    private static final String EXTRA_OGRENCI_ID = OgrenciProfilActivity.class.getName(); // TODO: 27.2.2017
     @Override
     protected Fragment createFragment() {
         return OgrencininHocalariFragment.newInstance();
     }
 
-    public static Intent newIntent(Context context, Long ogrenciID) {
+    public static Intent newIntent(Context context) {
         Intent intent = new Intent(context, OgrencininHocalariActivity.class);
-        intent.putExtra(EXTRA_OGRENCI_ID, ogrenciID);
         return intent;
     }
 }

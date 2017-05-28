@@ -3,7 +3,6 @@ package yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +18,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.Gruplar;
-import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Models.Mesaj;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.R;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Service.RetrofitInterface;
 import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Service.WS;
+import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Tools;
 
 /**
  * Created by Deno on 16.04.2017.
@@ -44,7 +42,7 @@ public class GruplarFragment extends Fragment {
     Call<Gruplar[]> mServiceCall;
     private RecyclerView mRecyclerView;
     List<Gruplar> mGruplar = new ArrayList<Gruplar>();
-    Long ogrId = 1l;
+    Long ogrId = Tools.getID();
 
 
     @Nullable
@@ -69,7 +67,7 @@ public class GruplarFragment extends Fragment {
             mRecyclerView.removeAllViews();
             mGruplar.clear();
             //  Toast.makeText(getContext(), ogrId.toString(), Toast.LENGTH_LONG).show();
-            mService.getOgrenciGruplari(ogrId).enqueue(new Callback<Gruplar[]>() {
+            mService.getOgrenciGruplari(Tools.getID()).enqueue(new Callback<Gruplar[]>() {
                 @Override
                 public void onResponse(Call<Gruplar[]> call, Response<Gruplar[]> response) {
                     for (Gruplar gruplar : response.body()) {
@@ -120,7 +118,7 @@ public class GruplarFragment extends Fragment {
 
 
             try {
-                mService.postGrubaKayitOl(ogrId, mGrup.getİd()).enqueue(new Callback<Boolean>() {
+                mService.postGrubaKayitOl(Tools.getID(), mGrup.getId()).enqueue(new Callback<Boolean>() {
                     @Override
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                       //  Toast.makeText(getContext(), response.body().toString(), Toast.LENGTH_LONG).show();

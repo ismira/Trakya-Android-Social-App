@@ -3,6 +3,7 @@ package yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,20 +39,14 @@ import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.Tools;
 public class MesajListesiFragment extends Fragment {
 
 
-    private final static String EXTRA_ID = "extra_id";
-    private final static String EXTRA_HOCA_MI = "extra_hoca_mi";
     private RetrofitInterface service = WS.getService();
-
-
     private Long mID;
     private boolean mHoca_mi;
-
     private List<SonKonusmaMesaji> mSonKonusmaMesajlarListesi;
     private SonKonusmaMesajlariAdapter mAdapter;
-
-
     private ProgressBar mProgressBar;
     private RecyclerView mMesajlarListesiRecyclerView;
+    private FloatingActionButton mMesajEkleFloatingButton;
 
 
     public static MesajListesiFragment newInstance() {
@@ -74,6 +69,14 @@ public class MesajListesiFragment extends Fragment {
         init(view);
         mID = Tools.getID();
         mHoca_mi = Tools.isHoca_mi();
+        mMesajEkleFloatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = AramaActivity.newIntent(getActivity());
+                startActivity(i);
+            }
+        });
+
         refreshSonKonusmaMesaji(mID, mHoca_mi);
         return view;
     }
@@ -102,6 +105,7 @@ public class MesajListesiFragment extends Fragment {
         mMesajlarListesiRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mProgressBar = (ProgressBar) view.findViewById(R.id.activity_mesajlar_listesi_progress_bar);
         mProgressBar.setEnabled(true);
+        mMesajEkleFloatingButton = (FloatingActionButton) view.findViewById(R.id.activity_mesajlar_listesi_mesaj_ekle_floating_button);
     }
 
     private class SonKonusmaMesajlariAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -167,7 +171,7 @@ public class MesajListesiFragment extends Fragment {
         }
     }
 
-
+/*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.add_item_menu, menu);
@@ -184,5 +188,7 @@ public class MesajListesiFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+
     }
+*/
 }

@@ -16,9 +16,7 @@ import yildiz.pakistanbullusevcet.trakya.com.trakyauniproje.R;
 public class NotEkleFragment extends Fragment {
 
     public static NotEkleFragment newInstance() {
-
         Bundle args = new Bundle();
-
         NotEkleFragment fragment = new NotEkleFragment();
         fragment.setArguments(args);
         return fragment;
